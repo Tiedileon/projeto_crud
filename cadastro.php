@@ -3,11 +3,15 @@ $page = "CADASTRO";
 include_once("inc/utils.php");
 $conn = getConn();
 if($conn && $_POST){
-    if (addProduct ($conn,$_POST['produto'],$_POST['preco'],$_POST['quantidade'])){
+    $added = addProduct ($conn,$_POST['produto'],$_POST['preco'],$_POST['quantidade'],$_POST['idcategoria']);
+    if ($added){
         header('Location: lista.php?message=success');
     } else {
         header('Location: cadastro.php?message=danger');
     }
+}
+if($conn) {
+  $categories = getCategories($conn);
 }
 ?>
 <!doctype html>
@@ -36,6 +40,17 @@ if($conn && $_POST){
       <input type="text" class="form-control" id="preco" name="preco" placeholder="0.00">
     </div>
     <div class="form-group col-md-6">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <?php while( $categ = mysqli_fetch_assoc($categories)):?>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="idcategoria" id="categ-<?=$categ['id']?>" value="<?=$categ['id']?>">
+        <label class="form-check-label" for="categ-<?=$categ['id']?>">
+          <?=$categ['nome']?></label>
+      </div>
+      <?php endwhile;?>
     </div>
   </div>
   

@@ -20,6 +20,7 @@ if($conn) {
       <th scope="col">Produto</th>
       <th scope="col">Quantidade</th>
       <th scope="col">Preco</th>
+      <th scope="col">Categoria</th>
       <th scope="col">Acoes</th>
     </tr>
   </thead>
@@ -27,9 +28,10 @@ if($conn) {
   <?php while($prod = mysqli_fetch_assoc($result)):?>
     <tr>
       <th scope="row"><?=$prod['id']?></th>
-      <td><?=$prod['nome']?></td>
+      <td><?=$prod['nome_produto']?></td>
       <td><?=$prod['quant']?></td>
       <td><?=$prod['preco']?></td>
+      <td><?=$prod['nome_categoria']?></td>
       <td>
       <!--<a href="excluir.php?id=<?=$prod['id']?>">Editar</a>--> 
       <form action="editar.php" method="GET">
