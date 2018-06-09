@@ -1,6 +1,7 @@
 <?php
 $page = "CADASTRO";
 include_once("inc/utils.php");
+redirIfNotLogged();
 $conn = getConn();
 if($conn && $_POST){
     $added = addProduct ($conn,$_POST['produto'],$_POST['preco'],$_POST['quantidade'],$_POST['idcategoria']);

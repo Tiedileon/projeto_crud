@@ -3,7 +3,7 @@
 <?php include("inc/header.php");?>
 <body>
 <div class="container">
-<div class="row align-items-center">
+<div class="row align-items-center" style="padding-top:100px">
     <div class="col">
     </div>
     <div class="col">

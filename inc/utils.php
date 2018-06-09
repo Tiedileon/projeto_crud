@@ -74,7 +74,14 @@ function getUser($conn,$email,$senha) {
     $result = mysqli_query($conn,$query);
     return $result;
 }
-function isUserLogged(){
-    return isset($_COOKIE['USER_LOGGED']);
+function redirIfNotLogged(){
+    if( !isset($_COOKIE['USER_LOGGED'])){
+        header('Location: index.php?r=no_auth');
+    }
+}
+function logout(){
+    if(isset($_COOKIE["USER_LOGGED"])){
+        setcookie("USER_LOGGED","", time() - 3600);
+    }
 }
 ?>

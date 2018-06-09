@@ -8,6 +8,9 @@
       <li class="nav-item <?=navActive($page,"CADASTRO")?>">
         <a class="nav-link" href="cadastro.php">Cadastro</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="logout.php">SAIR</a>
+      </li>
     </ul>
   </div>
   </nav>

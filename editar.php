@@ -1,6 +1,7 @@
 <?php
 $page = "EDITAR";
 include_once("inc/utils.php");
+redirIfNotLogged();
 $conn = getConn();
 if($conn && $_GET){
 $produto = getProductById($conn,$_GET['id']);

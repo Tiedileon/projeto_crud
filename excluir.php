@@ -1,5 +1,6 @@
 <?php
 include_once("inc/utils.php");
+redirIfNotLogged();
 $conn = getConn();
 if ($conn && $_REQUEST && $_REQUEST['id']) {
     $removed = removeProduct($conn, $_REQUEST['id']);
