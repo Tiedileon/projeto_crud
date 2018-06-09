@@ -70,18 +70,21 @@ function getCategories($conn) {
     return $result;
 }
 function getUser($conn,$email,$senha) {
-    $query = "SELECT id, nome, email FROM usuarios WHERE email = '$email' AND senha = '$senha'";
+    $query = "SELECT id, nome, email FROM usuarios WHERE email = '$email' AND senha = md5('$senha')";
     $result = mysqli_query($conn,$query);
     return $result;
 }
 function redirIfNotLogged(){
-    if( !isset($_COOKIE['USER_LOGGED'])){
+    session_start();
+    if( !(isset($_SESSION['AUTH']) && $_SESSION['AUTH'] == true )){
         header('Location: index.php?r=no_auth');
     }
 }
 function logout(){
-    if(isset($_COOKIE["USER_LOGGED"])){
-        setcookie("USER_LOGGED","", time() - 3600);
+    session_start();
+    if((isset($_SESSION["AUTH"])) && ($_SESSION["AUTH"]) == true){
+        session_unset();
+        session_destroy();
     }
 }
 ?>
