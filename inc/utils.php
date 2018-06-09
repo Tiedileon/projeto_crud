@@ -69,5 +69,12 @@ function getCategories($conn) {
     $result = mysqli_query($conn,$query);
     return $result;
 }
-
+function getUser($conn,$email,$senha) {
+    $query = "SELECT id, nome, email FROM usuarios WHERE email = '$email' AND senha = '$senha'";
+    $result = mysqli_query($conn,$query);
+    return $result;
+}
+function isUserLogged(){
+    return isset($_COOKIE['USER_LOGGED']);
+}
 ?>

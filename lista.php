@@ -1,6 +1,10 @@
 <?php
 include_once("inc/utils.php");
 $page = "LISTA";
+if(isUserLogged()){
+} else {
+  header('Location: index.php');
+}
 $conn = getConn();
 if($conn) {
     $result = getProducts($conn);
