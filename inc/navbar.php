@@ -12,5 +12,16 @@
         <a class="nav-link" href="logout.php">SAIR</a>
       </li>
     </ul>
+    
   </div>
+  <div class="btn-group">
+      <button type="button" class="btn btn-outline-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <?=$_SESSION["SESSIONNAME"]?> | <?=$_SESSION["SESSIONEMAIL"]?>
+      </button>
+      <div class="dropdown-menu">
+          <a class="dropdown-item" href="logout.php">SAIR</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          
+        </div>
+      </div>
   </nav>
