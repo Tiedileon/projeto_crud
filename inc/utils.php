@@ -29,7 +29,10 @@ function getProducts($conn){
             INNER JOIN
                 categorias AS c
             ON
-                (p.idcategoria = c.id);";
+                (p.idcategoria = c.id)
+            ORDER BY
+                p.id
+            DESC";
     $result = mysqli_query($conn,$query);
     return $result;
 }
@@ -45,16 +48,16 @@ function removeProduct($conn, $id){
         $query = "DELETE FROM produtos WHERE id = {$id}";
         return mysqli_query($conn,$query);
     }
-    
 }
-function updateProduct($conn,$id,$nome,$quant,$preco) {
+function updateProduct($conn,$id,$nome,$quant,$preco,$idcategoria) {
     if($id){
         $query= "UPDATE
                 produtos
                 SET
                 nome='{$nome}',
                 quant='{$quant}',
-                preco='{$preco}'
+                preco='{$preco}',
+                idcategoria='{$idcategoria}'
                 WHERE
                 id='{$id}'";
         $result = mysqli_query($conn,$query);
