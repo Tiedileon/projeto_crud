@@ -4,7 +4,7 @@ $page = "LISTA";
 redirIfNotLogged();
 $conn = getConn();
 if($conn) {
-    $result = getProducts($conn);
+    $produtos = getProducts($conn);
 }
 ?>
 <!doctype html>
@@ -26,27 +26,25 @@ if($conn) {
     </tr>
   </thead>
   <tbody>
-  <?php while($prod = mysqli_fetch_assoc($result)):?>
+  <?php foreach($produtos as $produto):?>
     <tr>
-      <th scope="row"><?=$prod['id']?></th>
-      <td><?=$prod['nome_produto']?></td>
-      <td><?=$prod['quant']?></td>
-      <td><?=$prod['preco']?></td>
-      <td><?=$prod['nome_categoria']?></td>
+      <th scope="row"><?=$produto->id?></th>
+      <td><?=$produto->nome?></td>
+      <td><?=$produto->quant?></td>
+      <td><?=$produto->preco?></td>
+      <td><?=$produto->nomeCategoria?></td>
       <td>
-      <!--<a href="excluir.php?id=<?=$prod['id']?>">Editar</a>--> 
       <form action="editar.php" method="GET">
-        <input hidden type="text" name="id" value="<?=$prod['id']?>">
+        <input hidden type="text" name="id" value="<?=$produto->id?>">
         <button type="submit" class="btn btn-primary">Editar</button>
       </form>
-      <!-- <a href="excluir.php?id=<?=$prod['id']?>">Excluir  </a>-->
       <form action="excluir.php" method="GET">
-        <input hidden type="text" name="id" value="<?=$prod['id']?>">
+        <input hidden type="text" name="id" value="<?=$produto->id?>">
         <button type="submit" class="btn btn-danger">Excluir</button>
       </form>
       </td>
     </tr>
-  <?php endwhile; ?>
+<?php endforeach; ?>
     
   </tbody>
 </table>

@@ -1,7 +1,6 @@
 <?php
 $page = "CADASTRO";
 include_once("inc/utils.php");
-include_once("classes/Produtos.php");
 redirIfNotLogged();
 $conn = getConn();
 if($conn && $_POST){
