@@ -1,10 +1,16 @@
 <?php
 $page = "CADASTRO";
 include_once("inc/utils.php");
+include_once("classes/Produtos.php");
 redirIfNotLogged();
 $conn = getConn();
 if($conn && $_POST){
-    $added = addProduct ($conn,$_POST['produto'],$_POST['preco'],$_POST['quantidade'],$_POST['idcategoria']);
+  $produto = new Produto ();
+  $produto->nome = $_POST['produto'];
+  $produto->preco = $_POST['preco'];
+  $produto->quant = $_POST['quantidade'];
+  $produto->idCategoria = $_POST['idcategoria'];
+  $added = addProduct ($conn,$produto);
     if ($added){
         header('Location: lista.php?message=success');
     } else {
@@ -45,6 +51,7 @@ if($conn) {
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
+    <label>Categoria</label>
       <?php while( $categ = mysqli_fetch_assoc($categories)):?>
       <div class="form-check">
         <input class="form-check-input" type="radio" name="idcategoria" id="categ-<?=$categ['id']?>" value="<?=$categ['id']?>">

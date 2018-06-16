@@ -37,10 +37,11 @@ function getProducts($conn){
     return $result;
 }
 
-function addProduct($conn,$nome, $preco, $quant, $idcateg){
+function addProduct($conn,$prod){
     $query = "INSERT INTO produtos 
-                            (nome,preco,quant,idcategoria) 
-                     VALUES ('{$nome}',{$preco},'{$quant}','{$idcateg}')";
+                        (nome,preco,quant,idcategoria) 
+                     VALUES 
+                        ('{$prod->nome}',{$prod->preco},'{$prod->quant}','{$prod->idCategoria}')";
     return mysqli_query($conn,$query);
 }
 function removeProduct($conn, $id){
