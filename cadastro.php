@@ -8,7 +8,8 @@ if($conn && $_POST){
   $produto->nome = $_POST['produto'];
   $produto->preco = $_POST['preco'];
   $produto->quant = $_POST['quantidade'];
-  $produto->idCategoria = $_POST['idcategoria'];
+  $produto->categoria = new Categoria();
+  $produto->categoria->id = $_POST['idcategoria'];
   $added = addProduct ($conn,$produto);
     if ($added){
         header('Location: lista.php?message=success');
