@@ -1,11 +1,12 @@
 <?php
 $page = "CADASTRO";
+include_once("classes/Produtos.php");
 include_once("inc/utils.php");
 redirIfNotLogged();
 $conn = getConn();
 if($conn && $_POST){
   $produto = new Produto ();
-  $produto->nome = $_POST['produto'];
+  $produto->setNome($_POST['produto']);
   $produto->preco = $_POST['preco'];
   $produto->quant = $_POST['quantidade'];
   $produto->categoria = new Categoria();

@@ -27,7 +27,8 @@ function getProducts($conn){
                 p.nome AS nome_produto,
                 p.preco,
                 p.quant,
-                c.nome AS nome_categoria
+                c.nome AS nome_categoria,
+                c.id AS idcategoria
             FROM
                 produtos AS p
             INNER JOIN
@@ -41,7 +42,7 @@ function getProducts($conn){
     while ($prod = mysqli_fetch_assoc($result)){
         $produto = new Produto();
         $produto->id = $prod['id'];
-        $produto->nome = $prod['nome_produto'];
+        $produto->setNome($prod['nome_produto']);
         $produto->preco = $prod['preco'];
         $produto->quant = $prod['quant'];
         $produto->categoria = new Categoria();
@@ -57,7 +58,7 @@ function addProduct($conn,$prod){
     $query = "INSERT INTO produtos 
                         (nome,preco,quant,idcategoria) 
                      VALUES 
-                        ('{$prod->nome}',{$prod->preco},'{$prod->quant}','{$prod->categoria->id}')";
+                        ('{$prod->getNome()}',{$prod->preco},'{$prod->quant}','{$prod->categoria->id}')";
     return mysqli_query($conn,$query);
 }
 function removeProduct($conn, $id){

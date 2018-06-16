@@ -1,5 +1,6 @@
 <?php
 include_once("inc/utils.php");
+include_once("classes/Produtos.php");
 $page = "LISTA";
 redirIfNotLogged();
 $conn = getConn();
@@ -20,8 +21,10 @@ if($conn) {
       <th scope="col">ID</th>
       <th scope="col">Produto</th>
       <th scope="col">Quantidade</th>
-      <th scope="col">Preco</th>
+      <th scope="col">Preco Unit</th>
+      <th scope="col">Total R$</th>
       <th scope="col">Categoria</th>
+      <th scope="col">Situacao Est</th>
       <th scope="col">Acoes</th>
     </tr>
   </thead>
@@ -29,9 +32,11 @@ if($conn) {
   <?php foreach($produtos as $produto):?>
     <tr>
       <th scope="row"><?=$produto->id?></th>
-      <td><?=$produto->nome?></td>
+      <td><?=$produto->getNome()?></td>
       <td><?=$produto->quant?></td>
-      <td><?=$produto->preco?></td>
+      <td><?=$produto->getpreco()?></td>
+      <td><?=$produto->total()?></td>
+      <td><?=$produto->situacao()?></td>
       <td><?=$produto->categoria->nome?></td>
       <td>
       <form action="editar.php" method="GET">
